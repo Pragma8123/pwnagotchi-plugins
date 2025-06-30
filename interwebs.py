@@ -1,8 +1,7 @@
 import logging
+import socket
 import threading
 import time
-
-import requests
 
 import pwnagotchi.plugins as plugins
 import pwnagotchi.ui.fonts as fonts
@@ -12,14 +11,13 @@ from pwnagotchi.ui.view import BLACK
 
 class Example(plugins.Plugin):
     __author__ = "pragma8123@gmail.com"
-    __version__ = "1.0.0"
+    __version__ = "1.0.1"
     __license__ = "GPL3"
     __description__ = "An internet status plugin that doesn't suck."
 
     def __init__(self):
         self.options = dict()
         self.internet = False
-        self.wan_ip = ""
         self.stop = False
         self.connection_thread = threading.Thread(target=self._internet_check)
         self.connection_thread.daemon = True
@@ -27,15 +25,10 @@ class Example(plugins.Plugin):
 
     def _is_internet_available(self):
         try:
-            with requests.get(
-                "https://api.ipify.org?format=json", timeout=3
-            ) as response:
-                with response.json() as body:
-                    if self.wan_ip != body["ip"]:
-                        self.wan_ip = body["ip"]
-                        logging.debug(f"[interwebs] New WAN IP: {self.wan_ip}")
-                    return True
-        except Exception as e:
+            socket.setdefaulttimeout(3)
+            socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
+            return True
+        except socket.error as e:
             return False
 
     def _internet_check(self):
