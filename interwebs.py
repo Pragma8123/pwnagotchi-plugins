@@ -9,9 +9,9 @@ from pwnagotchi.ui.components import LabeledValue
 from pwnagotchi.ui.view import BLACK
 
 
-class Example(plugins.Plugin):
+class Interwebs(plugins.Plugin):
     __author__ = "pragma8123@gmail.com"
-    __version__ = "1.0.2"
+    __version__ = "1.0.3"
     __license__ = "GPL3"
     __description__ = "An internet status plugin that doesn't suck."
 
