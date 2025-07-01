@@ -12,7 +12,7 @@ from pwnagotchi.ui.view import BLACK
 
 class Battery(plugins.Plugin):
     __author__ = "pragma8123@gmail.com"
-    __version__ = "0.1.0"
+    __version__ = "0.1.1"
     __license__ = "GPL3"
     __description__ = (
         "A battery status indicator plugin primarily for pisugar batteries."
@@ -83,7 +83,7 @@ class Battery(plugins.Plugin):
                 color=BLACK,
                 label="CHG" if self.charging else "BAT",
                 value="-",
-                position=(ui.width() / 2 + 18, 0),
+                position=(ui.width() / 2 + 16, 0),
                 label_font=fonts.Bold,
                 text_font=fonts.Medium,
             ),
