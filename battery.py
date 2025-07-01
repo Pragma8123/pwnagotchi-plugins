@@ -12,7 +12,7 @@ from pwnagotchi.ui.view import BLACK
 
 class Battery(plugins.Plugin):
     __author__ = "pragma8123@gmail.com"
-    __version__ = "0.1.1"
+    __version__ = "0.1.2"
     __license__ = "GPL3"
     __description__ = (
         "A battery status indicator plugin primarily for pisugar batteries."
@@ -53,7 +53,8 @@ class Battery(plugins.Plugin):
             try:
                 self.sock.send("get battery".encode())
                 data = self.sock.recv(128).decode()
-                self.percent = data.split(" ")[1].strip()
+                battery_exact = data.split(" ")[1].strip()
+                self.percent = int(float(battery_exact))
             except socket.error as e:
                 logging.error(f"[battery] error getting data from pisugar: {e}")
 
