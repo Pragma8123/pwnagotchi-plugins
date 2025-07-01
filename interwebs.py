@@ -11,7 +11,7 @@ from pwnagotchi.ui.view import BLACK
 
 class Interwebs(plugins.Plugin):
     __author__ = "pragma8123@gmail.com"
-    __version__ = "1.0.3"
+    __version__ = "1.0.4"
     __license__ = "GPL3"
     __description__ = "An internet status plugin that doesn't suck."
 
@@ -58,7 +58,7 @@ class Interwebs(plugins.Plugin):
                 color=BLACK,
                 label="WWW",
                 value="D",
-                position=(ui.width() / 2 - 45, 0),
+                position=(ui.width() / 2 - 42, 0),
                 label_font=fonts.Bold,
                 text_font=fonts.Medium,
             ),
